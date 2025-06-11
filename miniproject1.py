@@ -56,7 +56,7 @@ def main():
     
 # code for running in ide
     # believer prop, non-believer prop, nb-b conversion rate, b-nb conversion rate
-    initialize(.20, .50, 0.1, 0.60)
+    initialize(.50, .50, 0.1, 0.60)
 
     for i in range(0,10):
         update()
@@ -64,11 +64,11 @@ def main():
 
     print(bresult)
     print(nbresult)
+
     plt.plot(bresult, label = "believers")
     plt.plot(nbresult, label = "non-believers")
 
     plt.legend()
-
     plt.show()
 
 main()
