@@ -25,6 +25,7 @@ def observe():
     nbresult.append(nb)
 
 def update():
+    global b, nb, nb_b, b_nb
     # Current states of both variables
     prevb = b
     prevnb = nb 
@@ -36,15 +37,13 @@ def update():
     b = prevb + new_b - new_nb
     nb = prevnb + new_nb - new_b
 
-def main():
-    args = sys.argv
-    if (args.__len__ < 4):
-        # Raise usage exception if there aren't enough arguments
-        raise Exception("Usage: miniproject1 <belief popularity> <belief-nonbelief conversion> <nonbelief-belief conversion>")
-    else:
-        initialize(args[1], (1 - args[1]), args[2], args[3])
-        for t in range(0,30):
-            update()
-            observe()
-        plot(bresult, nbresult)
-        show()
+for initb in arange(0.1, 0.6, 0.1):
+    for initnb in arange (0.1, 0.6, 0.1):
+        for initnb_b in arange (0.1, 0.3, 0.1):
+            for initb_nb in arange (0.1, 0.3, 0.1):
+                initialize(initb, initnb, initnb_b, initb_nb)
+                for t in range(20):
+                    update()
+                    observe()
+                plot(bresult, nbresult)
+show()
