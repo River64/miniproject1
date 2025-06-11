@@ -2,7 +2,6 @@ from pylab import *
 
 def initialize(b0, nb0, nb_b0, b_nb0):
     global b, nb, nb_b, b_nb, bresult, nbresult
-
     # Popularity of believers
     b = b0
     # Popularity of non-believers
@@ -33,24 +32,30 @@ def update():
     # same but for new non-believers
     new_nb = b_nb * max(prevnb - prevb, 0)
 
+    # Main formula
     b = prevb + new_b - new_nb
     nb = prevnb + new_nb - new_b
 
-'''
-for initb in arange(0.1, 0.6, 0.1):
-    for initnb in arange (0.1, 0.6, 0.1):
+    # If any of them would be above 1 or below 0, nope they aren't
+    if (b > 1):
+        b = 1
+    if (nb > 1):
+        nb = 1
+    if (b < 0):
+        b = 0
+    if (nb < 0):
+        nb = 0
+
+for initb in arange(0.1, 0.5, 0.1):
+    for initnb in arange (0.1, 0.5, 0.1):
         for initnb_b in arange (0.1, 0.3, 0.1):
             for initb_nb in arange (0.1, 0.3, 0.1):
                 initialize(initb, initnb, initnb_b, initb_nb)
-                '''
-initialize(0.15, 0.1, 0.05, 0.1)
-for t in range(0,10):
-    update()
-    observe()
-x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-print(bresult)
-print("\n")
-print(nbresult)
-plot(x, bresult)
-plot(x, nbresult)
+                for t in range(0,10):
+                    update()
+                    observe()
+                # t-axis list
+                x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                plot(x, bresult)
+                plot(x, nbresult)
 show()
