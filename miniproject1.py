@@ -46,8 +46,8 @@ def update():
     if (nb < 0):
         nb = 0
 
-for initb in arange(0.1, 0.5, 0.1):
-    for initnb in arange (0.1, 0.5, 0.1):
+for initb in arange(0.3, 0.6, 0.1):
+    for initnb in arange (0.3, 0.6, 0.1):
         for initnb_b in arange (0.1, 0.3, 0.1):
             for initb_nb in arange (0.1, 0.3, 0.1):
                 initialize(initb, initnb, initnb_b, initb_nb)
@@ -56,6 +56,7 @@ for initb in arange(0.1, 0.5, 0.1):
                     observe()
                 # t-axis list
                 x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                plot(x, bresult)
-                plot(x, nbresult)
+                plot(x, nbresult, 'r', label = "non-believers")
+                plot(x, bresult, 'b', label = "believers")
+# legend()
 show()
